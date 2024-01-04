@@ -111,9 +111,19 @@ return {
 		"vimwiki/vimwiki",
 	},
 
-  {
-    "simrat39/rust-tools.nvim"
-  },
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+	},
+	{
+		"saecki/crates.nvim",
+		ft = { "rust", "toml" },
+		config = function(_, opts)
+			local crates = require("crates")
+			crates.setup(opts)
+			crates.show()
+		end,
+	},
 
 	{
 		"github/copilot.vim",

@@ -4,10 +4,10 @@ local merge_tb = vim.tbl_deep_extend
 
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
-
 local lspconfig = require("lspconfig")
+local util = require("lspconfig/util")
 
-local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "rust_analyzer","pyright", }
+local servers = { "html", "cssls", "tsserver", "clangd", "gopls","pyright", }
 
 for _, lsp in ipairs(servers) do
 	local opts = {
@@ -23,18 +23,19 @@ for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup(opts)
 end
 
-require'lspconfig'.rust_analyzer.setup{
+-- rust lsp config
+require'lspconfig'.rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "rust"},
+  root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
   settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = true;
-      }
-    }
-  },
-  filetypes = {
-    "rust",
-  },
-}
+    cargo = {
+      allFeatures = true,
+      autoreload = true,
+    },
+  }
+})
 
 local config = {
 	virtual_text = true,

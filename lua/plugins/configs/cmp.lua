@@ -1,5 +1,7 @@
 local cmp = require "cmp"
 
+-- local crates = require('crates')
+
 dofile(vim.g.base46_cache .. "cmp")
 
 local cmp_ui = require("core.utils").load_config().ui.cmp
@@ -110,6 +112,7 @@ local options = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
+    { name = "crates" },
   },
 }
 
