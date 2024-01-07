@@ -72,12 +72,12 @@ autocmd("FileType", {
 })
 
 -- save view (folds), when closing file
-vim.api.nvim_create_autocmd({"BufWinLeave"}, {
+autocmd({"BufWinLeave"}, {
   pattern = {"*.*"},
   desc = "save view (folds), when closing file",
   command = "mkview",
 })
-vim.api.nvim_create_autocmd({"BufWinEnter"}, {
+autocmd({"BufWinEnter"}, {
   pattern = {"*.*"},
   desc = "load view (folds), when opening file",
   command = "silent! loadview"
