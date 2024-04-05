@@ -102,4 +102,23 @@ return {
               require("Comment").setup(opts)
             end,
       },
+
+        -- indented scope lines
+      {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {}, 
+        config = function()
+          require('ibl').setup()
+        end,
+      },
+
+      {
+          "lewis6991/gitsigns.nvim",
+          config = function()
+            require('after.plugins.gitsigns')
+          end,
+      }
+
+      
 }
