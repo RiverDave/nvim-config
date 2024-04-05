@@ -79,7 +79,7 @@ return {
 	},
 
 	-- Curly brackets/parenthesis thing
-	{
+	    {
         "windwp/nvim-autopairs",
 	--TODO: Move these configs outside this file, as I'd look much more organized
         opts = {
@@ -94,7 +94,6 @@ return {
           require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
-
 
       {
          "numToStr/Comment.nvim",
@@ -118,7 +117,46 @@ return {
           config = function()
             require('after.plugins.gitsigns')
           end,
-      }
+      },
+
+      --WARNING: Repo says this is unmantained
+      {
+        "zbirenbaum/nvterm",
+        config = function()
+          require("after.plugins.nvterm")
+        end,
+      },
+
+      
+      -- Will I use it? I dont know...
+      {
+        "folke/zen-mode.nvim",
+        opts = {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      },
+
+      -- devicons
+      {
+        "nvim-tree/nvim-web-devicons",
+        config = function()
+          require('after.plugins.devicons')
+        end,
+
+      },
+
+      {
+          'nvim-lualine/lualine.nvim',
+          dependencies = { 'nvim-tree/nvim-web-devicons' },
+          config = function()
+            require('after.plugins.lualine')
+
+          end
+      },
+
+      
 
       
 }
