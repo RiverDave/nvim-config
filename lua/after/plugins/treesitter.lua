@@ -17,6 +17,7 @@ require'nvim-treesitter.configs'.setup {
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
   highlight = {
+    -- False will disable this plugin
     enable = true,
 
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
@@ -25,6 +26,7 @@ require'nvim-treesitter.configs'.setup {
     -- list of language that will be disabled
     -- disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -40,3 +42,14 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- Params: 
+-- group : hl group to be replaced
+-- tbl   : new highlight group
+-- local function update_hl(group, tbl)
+-- 	local old_hl = vim.api.nvim_get_hl_by_name(group, true)
+-- 	local new_hl = vim.tbl_extend('force', old_hl, tbl)
+-- 	vim.api.nvim_set_hl(0, group, new_hl)
+-- end
+--
+-- update_hl('Identifier', { italic = true })

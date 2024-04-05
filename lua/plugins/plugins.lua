@@ -18,7 +18,7 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = function()    -- important, requires our settings as set in target module
+    opts = function() -- important, requires our settings as set in target module
       local conf = require "after.plugins.telescope"
       return conf
     end
@@ -29,11 +29,12 @@ return {
   --configures bg
   {
     "rose-pine/neovim",
-    name = "rose-pine",
     opts = function()
       local conf = require "after.plugins.colors"
       return conf
-    end
+    end,
+    name = 'rosepine',
+
 
   },
 
@@ -183,7 +184,6 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-
   },
 
   -- File formatting
@@ -193,13 +193,31 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
+        cpp = { "clangd-format" },
       },
     },
     config = function(_, opts)
       require("conform").setup(opts)
-    end,
+    end
   },
 
+  -- Scope folding, CONFIG THIS LATER
+  -- {
+  --
+  --   'kevinhwang91/nvim-ufo',
+  --   dependencies = { 'kevinhwang91/promise-async' },
+  --   config = function ()
+  --     require('lua.after.plugins.ufo')
+  --   end
+  --
+  --
+  -- }
 
+{
+  "folke/todo-comments.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = {
+  }
+},
 
 }

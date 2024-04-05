@@ -3,9 +3,13 @@ local o = vim.o
 
 
 
+opt.guicursor = ""
+
 o.clipboard = "unnamedplus"  -- Clipboard support, yay!
 
 o.cursorline = true
+
+
 
 o.cursorlineopt = "number"
 o.relativenumber = true
@@ -35,3 +39,5 @@ o.splitbelow = true
 o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
+
+
