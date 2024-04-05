@@ -28,9 +28,16 @@ map(
   { desc = "Comment Toggle" }
 )
 
--- WhickKey
+-- WhickKey, need to set this up
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
 map("n", "<leader>wk", function()
   vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
 end, { desc = "Whichkey query lookup" })
+
+
+--File format:
+
+map("n", "<leader>fm", function()
+  require("conform").format { lsp_fallback = true }
+end)
