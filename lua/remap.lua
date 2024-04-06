@@ -28,7 +28,7 @@ map(
   { desc = "Comment Toggle" }
 )
 
--- WhickKey, need to set this up
+-- TODO: Configure WhickKey 
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
 map("n", "<leader>wk", function()
@@ -42,12 +42,7 @@ map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end)
 
--- Some buffer navigation (placeholder while I figure out what to do with harpoon or tabufline?)
-map("n", "<leader>bl", "<cmd>blast <CR>")
-map("n", "<leader>bn", "<cmd>bnext <CR>")
-
 -- Some lsp stuff (see lsp_config for buffr specifics)
-
 
 map("n", "<leader>lf", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)

@@ -27,15 +27,21 @@ return {
 
   --Important, sets current color scheme &
   --configures bg
+  -- {
+  --   "rose-pine/neovim",
+  --   opts = function()
+  --     local conf = require "after.plugins.colors"
+  --     return conf
+  --   end,
+  --   name = 'rosepine',
+  -- },
+
   {
-    "rose-pine/neovim",
-    opts = function()
-      local conf = require "after.plugins.colors"
-      return conf
-    end,
-    name = 'rosepine',
-
-
+    "miikanissi/modus-themes.nvim",
+    priority = 1000,
+    config = function ()
+      require('after.plugins.colors')
+    end
   },
 
   { --Mainly syntax highlighting
@@ -47,20 +53,20 @@ return {
   },
 
   --FIX THIS: problem is prolly caused cause of plenary
-  --{
-  --   "ThePrimeagen/harpoon",
-  --   branch = "harpoon2",
-  --  dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  },
-  -- config = function()
-  --	    local conf = require('after.plugins.harpoon')
-  --	    return conf
-  --   end
-  --},
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  },
+  config = function()
+      local conf = require('after.plugins.harpoon')
+      return conf
+    end
+  },
 
   -- Completions
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = "InsertEnter", -- Lazy loading on InsertEnter
     config = function()
       require('after.plugins.completions')
     end
@@ -213,11 +219,11 @@ return {
   --
   -- }
 
-{
-  "folke/todo-comments.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  opts = {
-  }
-},
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+    }
+  },
 
 }
