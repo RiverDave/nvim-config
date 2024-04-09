@@ -226,4 +226,8 @@ return {
     }
   },
 
+  {
+    "github/copilot.vim"
+  },
+
 }

@@ -28,7 +28,7 @@ map(
   { desc = "Comment Toggle" }
 )
 
--- TODO: Configure WhickKey 
+-- TODO: Configure WhickKey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
 map("n", "<leader>wk", function()
@@ -54,10 +54,19 @@ map({ "n", "t" }, "<A-v>", function()
   require("after.plugins.nvterm").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
 end)
 
-map({ "n", "t" }, "<A-h>", function()
-  require("after.plugins.nvterm").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
-end)
+-- NOTE: Causes conflict with yabai
+-- map({ "n", "t" }, "<A-h>", function()
+--   require("after.plugins.nvterm").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
+-- end)
 
 map({ "n", "t" }, "<A-i>", function()
   require("after.plugins.nvterm").toggle { pos = "float", id = "floatTerm" }
 end)
+
+-- Copilot setup 
+
+map('i', '<C-l>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
