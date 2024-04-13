@@ -62,11 +62,12 @@ end
 -- })
 --
 
-vim.cmd([[colorscheme modus_vivendi]]) -- modus_operandi, modus_vivendi
+-- vim.cmd([[colorscheme modus_vivendi]]) -- modus_operandi, modus_vivendi
+vim.cmd("colorscheme kanagawa-wave") -- modus_operandi, modus_vivendi
 -- vim.cmd("colorscheme miasma")
 -- vim.cmd("colorscheme rose-pine")
 
 
 
 
-ColorBg(_, "modus")
+ColorBg(_, "kanagawa-wave")

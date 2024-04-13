@@ -32,7 +32,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 -- specify default config on these servers...
-local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver","cmake", "bashls" }
+local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver","cmake", "bashls","markdown_oxide" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -108,3 +108,11 @@ lspconfig.eslint.setup {
     end
   end,
 }
+
+-- Markdown stuff
+lspconfig.markdown_oxide.setup({
+    on_attach = on_attach,
+    capabilities = capabilities, -- ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()), -- this is a temp fix for an error in the lspconfig for this LS
+})
+

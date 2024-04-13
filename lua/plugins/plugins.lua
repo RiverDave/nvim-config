@@ -36,13 +36,22 @@ return {
   --   name = 'rosepine',
   -- },
 
+  -- {
+  --   "miikanissi/modus-themes.nvim",
+  --   priority = 1000,
+  --   config = function ()
+  --     require('after.plugins.colors')
+  --   end
+  -- },
+
   {
-    "miikanissi/modus-themes.nvim",
-    priority = 1000,
-    config = function ()
-      require('after.plugins.colors')
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require "after.plugins.colors"
+      -- vim.cmd("colorscheme kanagawa-dragon")
     end
   },
+
 
   { --Mainly syntax highlighting
     "nvim-treesitter/nvim-treesitter",
@@ -56,8 +65,8 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  },
-  config = function()
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    config = function()
       local conf = require('after.plugins.harpoon')
       return conf
     end
@@ -227,7 +236,31 @@ return {
   },
 
   {
+    "mfussenegger/nvim-dap",
+
+    config = function()
+      require('after.plugins.dap')
+    end,
+    dependencies = { 'rcarriga/nvim-dap-ui' },
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+  },
+
+  {
     "github/copilot.vim"
+  },
+
+  --None-ls -> non lsp sources support(linters, formatters, etc)
+  {
+    "nvimtools/none-ls.nvim",
+    config = function()
+      require('after.plugins.nonels')
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+
   },
 
 }

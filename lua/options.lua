@@ -13,6 +13,8 @@ o.cursorline = true
 
 o.cursorlineopt = "number"
 o.relativenumber = true
+
+-- opt.nohlsearch = false
 o.ignorecase = true
 o.smartcase = true
 
