@@ -46,11 +46,26 @@ return {
 
   {
     "rebelot/kanagawa.nvim",
-    config = function()
-      require "after.plugins.colors"
-      -- vim.cmd("colorscheme kanagawa-dragon")
-    end
   },
+
+  {
+    "sainnhe/gruvbox-material",
+  },
+{
+    "myypo/borrowed.nvim",
+    lazy = false,
+
+    priority = 1000,
+
+    version = '^0', -- Optional: avoid upgrading to breaking versions
+
+    config = function()
+      require('after.plugins.colors')
+        -- vim.cmd("colorscheme mayu")
+        --
+      vim.opt.guicursor = "" --override default theme settings
+    end,
+},
 
 
   { --Mainly syntax highlighting
@@ -60,6 +75,7 @@ return {
       return conf
     end
   },
+
 
   --FIX THIS: problem is prolly caused cause of plenary
   {
@@ -262,5 +278,24 @@ return {
     requires = { "nvim-lua/plenary.nvim" },
 
   },
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "github/copilot.vim" },    -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+
+  {
+    "tpope/vim-dadbod",
+  }
+
 
 }

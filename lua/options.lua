@@ -30,6 +30,11 @@ o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
 
+-- Status line
+
+--Screen wide status line
+vim.o.laststatus = 3
+
 --  Numbers
 o.number = true
 o.numberwidth = 2

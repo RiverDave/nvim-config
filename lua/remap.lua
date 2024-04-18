@@ -6,6 +6,13 @@ vim.g.mapleader = " " -- leader -> space key
 map("n", "<leader>pv", vim.cmd.Ex)
 
 
+-- Disable arrow keys
+map('n', '<left>', '<cmd>echo "Use h"<CR>')
+map('n', '<right>', '<cmd>echo "Use l"<CR>')
+map('n', '<up>', '<cmd>echo "Use k"<CR>')
+map('n', '<down>', '<cmd>echo "Use j"<CR>')
+
+
 -- General shorcuts
 map("n", "<C-s>", vim.cmd.w)      -- save shrct
 map("n", "<C-c>", "<cmd>%y+<CR>") -- copy select & copy whole file
@@ -70,3 +77,19 @@ map('i', '<C-l>', 'copilot#Accept("\\<CR>")', {
   replace_keycodes = false
 })
 vim.g.copilot_no_tab_map = true
+
+
+-- Copilot chat stuff
+
+
+function ChatAllBuffer()
+  local input = vim.fn.input("Quick Chat: ")
+  if input ~= "" then
+    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+  end
+end
+
+map('n', '<leader>ccq', ':lua ChatAllBuffer()<CR>', {noremap = true, silent = true})
+
+
+
