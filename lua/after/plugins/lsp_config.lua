@@ -32,7 +32,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 -- specify default config on these servers...
-local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver","cmake", "bashls","markdown_oxide", "pyright" }
+local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver", "cmake", "bashls", "markdown_oxide", "pyright" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -111,8 +111,24 @@ lspconfig.eslint.setup {
 
 -- Markdown stuff
 lspconfig.markdown_oxide.setup({
-    on_attach = on_attach,
-    capabilities = capabilities, -- ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()), -- this is a temp fix for an error in the lspconfig for this LS
+  on_attach = on_attach,
+  capabilities = capabilities,                                       -- ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+  root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),   -- this is a temp fix for an error in the lspconfig for this LS
 })
 
+lspconfig.pyright.setup({
+
+  cmd = { "pyright-langserver", "--stdio" },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true
+      }
+    }
+  },
+
+  singgle_file_support = true,
+
+})

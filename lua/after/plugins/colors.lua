@@ -8,8 +8,8 @@ function ColorBg(color, plugin)
 end
 
 
--- vim.cmd([[colorscheme modus_vivendi]]) -- modus_operandi, modus_vivendi
-vim.cmd("colorscheme shin") -- modus_operandi, modus_vivendi
+vim.cmd([[colorscheme modus_vivendi]]) -- modus_operandi, modus_vivendi
+-- vim.cmd("colorscheme github_dark_default") -- modus_operandi, modus_vivendi
 -- vim.cmd("colorscheme mayu")
 -- vim.cmd("colorscheme miasma")
 -- vim.cmd("colorscheme rose-pine")
@@ -17,4 +17,4 @@ vim.cmd("colorscheme shin") -- modus_operandi, modus_vivendi
 
 
 
-ColorBg(_, "shin") -- or shin
+ColorBg(_, "modus_vivendi") 

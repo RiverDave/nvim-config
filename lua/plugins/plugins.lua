@@ -36,36 +36,51 @@ return {
   --   name = 'rosepine',
   -- },
 
-  -- {
-  --   "miikanissi/modus-themes.nvim",
-  --   priority = 1000,
-  --   config = function ()
-  --     require('after.plugins.colors')
-  --   end
-  -- },
+  {
+    "miikanissi/modus-themes.nvim",
+    -- priority = 1000,
+    -- config = function ()
+    --   require('after.plugins.colors')
+    -- end
+  },
 
   {
     "rebelot/kanagawa.nvim",
   },
 
   {
-    "sainnhe/gruvbox-material",
-  },
-{
     "myypo/borrowed.nvim",
     lazy = false,
-
     priority = 1000,
-
     version = '^0', -- Optional: avoid upgrading to breaking versions
 
+    -- config = function()
+    --   require('after.plugins.colors')
+    --   -- vim.cmd("colorscheme mayu")
+    --   --
+    --   vim.opt.guicursor = "" --override default theme settings
+    -- end,
+  },
+
+  {
+    'projekt0n/github-nvim-theme',
+    lazy = false,  -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require('after.plugins.colors')
-        -- vim.cmd("colorscheme mayu")
-        --
-      vim.opt.guicursor = "" --override default theme settings
+    -- vim.cmd('colorscheme github_dark')
     end,
-},
+  },
+
+  {
+    "morhetz/gruvbox"
+  },
+
+  {
+    "mswift42/vim-themes"
+
+  },
+
 
 
   { --Mainly syntax highlighting
@@ -295,7 +310,9 @@ return {
 
   {
     "tpope/vim-dadbod",
-  }
+  },
+
+
 
 
 }
