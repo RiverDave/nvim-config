@@ -34,6 +34,7 @@ dap.adapters.lldb = {
   name = 'lldb'
 }
 
+--FIXME: Debuggers are not working
 dap.adapters.rust = {
   type = "server",
   port = "${port}",

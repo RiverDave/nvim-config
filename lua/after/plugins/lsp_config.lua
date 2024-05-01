@@ -41,6 +41,20 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+     "--background-index",
+    "--clang-tidy",
+    "--completion-style=bundled",
+    "--cross-file-rename",
+    "--header-insertion=iwyu",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+}
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
