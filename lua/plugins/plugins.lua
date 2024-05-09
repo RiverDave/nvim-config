@@ -19,7 +19,7 @@ return {
     tag = '0.1.6',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function() -- important, requires our settings as set in target module
-      local conf = require "after.plugins.telescope"
+      require "after.plugins.telescope"
       return conf
     end
 
@@ -27,23 +27,22 @@ return {
 
   {
     "rose-pine/neovim",
-    -- opts = function()
-    --   local conf = require "after.plugins.colors"
-    --   return conf
-    -- end,
+    opts = function()
+      require "after.plugins.colors"
+    end,
     name = 'rosepine',
   },
 
-  {
-    "folke/tokyonight.nvim",
-
-    lazy = false,
-    priority = 1000,
-    opts = function()
-      local conf = require "after.plugins.colors"
-      return conf
-    end,
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = function()
+  --     local conf = require "after.plugins.colors"
+  --     return conf
+  --   end,
+  -- },
 
   {
     "miikanissi/modus-themes.nvim",
@@ -72,26 +71,26 @@ return {
   },
 
   --Tsoding's theme
-{ "blazkowolf/gruber-darker.nvim" },
+  { "blazkowolf/gruber-darker.nvim" },
 
-  {
-    'projekt0n/github-nvim-theme',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require('after.plugins.colors')
-      -- vim.cmd('colorscheme github_dark')
-    end,
-  },
+  -- {
+  --   'projekt0n/github-nvim-theme',
+  --   lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   config = function()
+  --     require('after.plugins.colors')
+  --     -- vim.cmd('colorscheme github_dark')
+  --   end,
+  -- },
 
-  {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000
-    ,
-    config = function()
-      require('after.plugins.colors')
-    end,
-  },
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   priority = 1000
+  --   ,
+  --   config = function()
+  --     require('after.plugins.colors')
+  --   end,
+  -- },
 
   {
     "mswift42/vim-themes"
@@ -332,23 +331,21 @@ return {
 
   --Pretty UI:
   --
--- lazy.nvim
-{
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- add any options here
-  },
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    -- "rcarriga/nvim-notify",
+  -- lazy.nvim
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
     }
-},
-
-
+  },
 
 }

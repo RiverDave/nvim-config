@@ -31,8 +31,8 @@ require("nvterm").setup({
 -- Bind structure
 -- mode, bind , command , Don't forget to call lua!
 -- Mx -> alt
-map( "n", "<A-h>" , "<ESC><cmd> lua require('nvterm.terminal').toggle 'horizontal' <CR>", { noremap = true })
-map( "n", "<A-i>" , "<ESC><cmd> lua require('nvterm.terminal').toggle 'float' <CR>", { noremap = true })
+-- map( "n", "<A-h>" , "<ESC><cmd> lua require('nvterm.terminal').toggle 'horizontal' <CR>", { noremap = true })
+map( "n", "<A-i>" , "<ESC><cmd> lua require('nvterm.terminal').toggle 'horizontal' <CR>", { noremap = true })
 map( "n", "<A-v>" , "<ESC><cmd> lua require('nvterm.terminal').toggle 'vertical' <CR>", { noremap = true })
 
 -- Escape terminal mode
