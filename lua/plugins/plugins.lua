@@ -20,7 +20,6 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function() -- important, requires our settings as set in target module
       require "after.plugins.telescope"
-      return conf
     end
 
   },
@@ -28,7 +27,7 @@ return {
   {
     "rose-pine/neovim",
     opts = function()
-      require "after.plugins.colors"
+      -- require "after.plugins.colors"
     end,
     name = 'rosepine',
   },
@@ -73,15 +72,15 @@ return {
   --Tsoding's theme
   { "blazkowolf/gruber-darker.nvim" },
 
-  -- {
-  --   'projekt0n/github-nvim-theme',
-  --   lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   config = function()
-  --     require('after.plugins.colors')
-  --     -- vim.cmd('colorscheme github_dark')
-  --   end,
-  -- },
+  {
+    'projekt0n/github-nvim-theme',
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- config = function()
+    --   require('after.plugins.colors')
+    --   -- vim.cmd('colorscheme github_dark')
+    -- end,
+  },
 
   -- {
   --   "ellisonleao/gruvbox.nvim",
@@ -91,13 +90,6 @@ return {
   --     require('after.plugins.colors')
   --   end,
   -- },
-
-  {
-    "mswift42/vim-themes"
-
-  },
-
-
 
   { --Mainly syntax highlighting
     "nvim-treesitter/nvim-treesitter",
@@ -184,7 +176,7 @@ return {
     main = "ibl",
     opts = {},
     config = function()
-      require('ibl').setup()
+      require("after.plugins.blankline")
     end,
   },
 
@@ -241,7 +233,11 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
-
+    -- opts = {
+    --   ensure_installed = { -- TODO: Add main servers
+    --     "eslint@4.8.0",
+    --   },
+    -- },
   },
 
   {
@@ -338,6 +334,7 @@ return {
     opts = {
       -- add any options here
     },
+
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
@@ -345,7 +342,79 @@ return {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       -- "rcarriga/nvim-notify",
+    },
+  },
+
+  {
+    "mellow-theme/mellow.nvim"
+  },
+
+  -- { 'jaredgorski/spacecamp' },
+
+  { 'doums/darcula' },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
+  {
+    'comfysage/evergarden',
+    priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+    opts = {
+      transparent_background = false,
+      contrast_dark = 'hard', -- 'hard'|'medium'|'soft'
+      overrides = {},         -- add custom overrides
     }
   },
+
+  -- {
+  --   'mvllow/modes.nvim',
+  --   tag = 'v0.2.0',
+  --   config = function()
+  --     require('modes').setup()
+  --   end
+  -- },
+
+  -- Some funny themes:
+  {
+
+    "rafi/awesome-vim-colorschemes",
+    config = function()
+      vim.cmd("colorscheme tokyonight-moon")
+    end,
+
+  },
+
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = {
+      "html",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "xml",
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  }
 
 }

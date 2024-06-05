@@ -48,3 +48,6 @@ o.timeoutlen = 400
 o.undofile = true
 
 
+opt.list = true
+-- opt.listchars = { eol = '↴'}
+

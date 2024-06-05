@@ -15,4 +15,12 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>")
 -- List TODOS , Project - wide
 vim.keymap.set("n", "<leader>fx", "<cmd>TodoTelescope<CR>")
 
+require "telescope".setup {
+  pickers = {
+    colorscheme = {
+      enable_preview = true
+    }
+  }
+}
+
 
