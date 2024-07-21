@@ -32,17 +32,6 @@ return {
     name = 'rosepine',
   },
 
-  -- {
-  --   "folke/tokyonight.nvim",
-  --
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = function()
-  --     local conf = require "after.plugins.colors"
-  --     return conf
-  --   end,
-  -- },
-
   {
     "miikanissi/modus-themes.nvim",
     -- priority = 1000,
@@ -82,14 +71,14 @@ return {
     -- end,
   },
 
-  -- {
-  --   "ellisonleao/gruvbox.nvim",
-  --   priority = 1000
-  --   ,
-  --   config = function()
-  --     require('after.plugins.colors')
-  --   end,
-  -- },
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000
+    ,
+    config = function()
+      require('after.plugins.colors')
+    end,
+  },
 
   { --Mainly syntax highlighting
     "nvim-treesitter/nvim-treesitter",
@@ -252,24 +241,14 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         cpp = { "clangd-format" },
+        sh = { "shfmt" },
+        py = { "black" },
       },
     },
     config = function(_, opts)
       require("conform").setup(opts)
     end
   },
-
-  -- Scope folding, CONFIG THIS LATER
-  -- {
-  --
-  --   'kevinhwang91/nvim-ufo',
-  --   dependencies = { 'kevinhwang91/promise-async' },
-  --   config = function ()
-  --     require('lua.after.plugins.ufo')
-  --   end
-  --
-  --
-  -- }
 
   {
     "folke/todo-comments.nvim",
@@ -328,30 +307,22 @@ return {
   --Pretty UI:
   --
   -- lazy.nvim
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      -- "rcarriga/nvim-notify",
-    },
-  },
-
-  {
-    "mellow-theme/mellow.nvim"
-  },
-
-  -- { 'jaredgorski/spacecamp' },
-
-  { 'doums/darcula' },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     -- "rcarriga/nvim-notify",
+  --   },
+  -- },
 
   {
     "folke/tokyonight.nvim",
@@ -379,15 +350,6 @@ return {
   -- },
 
   -- Some funny themes:
-  {
-
-    "rafi/awesome-vim-colorschemes",
-    config = function()
-      vim.cmd("colorscheme tokyonight-moon")
-    end,
-
-  },
-
 
   {
     "iamcco/markdown-preview.nvim",
@@ -415,16 +377,6 @@ return {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-  },
-
-  {
-    "slugbyte/lackluster.nvim"
-  },
-
-
-  {
-    "Mofiqul/vscode.nvim",
-
   },
 
   {
@@ -491,7 +443,30 @@ return {
         desc = "Quickfix List (Trouble)",
       },
     },
-  }
+  },
+
+  {
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.gruvbox_material_enable_italic = true
+      vim.cmd.colorscheme('gruvbox-material')
+    end
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "after.plugins.nvimtree"
+    end,
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+    end,
+  },
 
 
 

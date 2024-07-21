@@ -33,7 +33,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- specify default config on these servers...
 local servers = {  "html", "cssls", "clangd", "tailwindcss", "tsserver", "cmake", "bashls",
-  "markdown_oxide" }
+  "markdown_oxide", "dockerls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

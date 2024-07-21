@@ -1,11 +1,11 @@
 -- file gathered from docs
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
 
-  ensure_installed = { "c",  "javascript","typescript", "lua", "rust","cpp", "vim", "vimdoc", "query" },
+  ensure_installed = { "c", "javascript", "typescript", "lua", "rust", "cpp", "vim", "vimdoc", "query" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+  sync_install = true,
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
@@ -30,11 +30,11 @@ require'nvim-treesitter.configs'.setup {
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
 
     disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
+      local max_filesize = 100 * 1024   -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
     end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -45,13 +45,13 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- Params: 
+-- Params:
 -- group : hl group to be replaced
 -- tbl   : new highlight group
--- local function update_hl(group, tbl)
--- 	local old_hl = vim.api.nvim_get_hl_by_name(group, true)
--- 	local new_hl = vim.tbl_extend('force', old_hl, tbl)
--- 	vim.api.nvim_set_hl(0, group, new_hl)
--- end
+local function update_hl(group, tbl)
+  local old_hl = vim.api.nvim_get_hl_by_name(group, true)
+  local new_hl = vim.tbl_extend('force', old_hl, tbl)
+  vim.api.nvim_set_hl(0, group, new_hl)
+end
 --
--- update_hl('Identifier', { italic = true })
+update_hl('Identifier', { italic = true })
