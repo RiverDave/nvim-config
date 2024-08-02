@@ -38,7 +38,7 @@ require("gruvbox").setup({
 -- vim.cmd("colorscheme gruvbox")
 
 
-local curr_scheme = ""
+-- local curr_scheme = ""
 
 -- vim.cmd.colorscheme(curr_scheme) -- Or the desired theme
 -- ColorBg(_, curr_scheme)

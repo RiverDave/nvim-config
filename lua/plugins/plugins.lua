@@ -25,6 +25,11 @@ return {
   },
 
   {
+    'nvim-telescope/telescope-media-files.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+  },
+
+  {
     "rose-pine/neovim",
     opts = function()
       -- require "after.plugins.colors"
@@ -76,7 +81,7 @@ return {
     priority = 1000
     ,
     config = function()
-      require('after.plugins.colors')
+      -- require('after.plugins.colors')
     end,
   },
 
@@ -116,7 +121,10 @@ return {
   {
     "L3MON4D3/LuaSnip"
   },
-  ----
+
+  { "rafamadriz/friendly-snippets" },
+
+  { 'saadparwaiz1/cmp_luasnip' },
 
   {
     "mbbill/undotree",
@@ -446,15 +454,7 @@ return {
   },
 
   {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- Optionally configure and load the colorscheme
-      -- directly inside the plugin declaration.
-      vim.g.gruvbox_material_enable_italic = true
-      vim.cmd.colorscheme('gruvbox-material')
-    end
+    "Mofiqul/vscode.nvim"
   },
 
   {
@@ -467,6 +467,55 @@ return {
       require("nvim-tree").setup(opts)
     end,
   },
+
+  -- Auto rezisable splits
+
+  {
+    "nvim-focus/focus.nvim",
+    config = function()
+      require("focus").setup()
+    end,
+  },
+
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    -- this failed to get configured on its own module
+    config = function()
+      require("cyberdream").setup({
+        -- Enable transparent background
+        transparent = true,
+
+        -- Enable italics comments
+        italic_comments = false,
+
+        -- Replace all fillchars with ' ' for the ultimate clean look
+        hide_fillchars = false,
+
+        -- Modern borderless telescope theme
+        borderless_telescope = true,
+
+        -- Set terminal colors used in `:terminal`
+        terminal_colors = true,
+      })
+    end,
+
+  },
+
+  {
+    "navarasu/onedark.nvim",
+    config = function()
+      require('onedark').setup({
+        terminal_colors = true,
+        ending_tildes = true,
+      })
+
+    vim.cmd('colorscheme onedark')
+    end,
+
+
+  }
 
 
 
