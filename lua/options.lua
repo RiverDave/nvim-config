@@ -1,9 +1,14 @@
 local opt = vim.opt
 local o = vim.o
 
+opt.termguicolors = true
 
 
-opt.guicursor = ""
+
+-- opt.guicursor = ""
+opt.guicursor = "n-v-i-c:block-Cursor"
+-- opt.guicursor = "n-v-i-c:block-Cursor/lCursor-blinkon0,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor" -- line cursor
+
 
 o.clipboard = "unnamedplus"  -- Clipboard support, yay!
 

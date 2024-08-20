@@ -511,10 +511,29 @@ return {
         ending_tildes = true,
       })
 
-    vim.cmd('colorscheme onedark')
+      vim.cmd('colorscheme github_dark_default')
     end,
 
 
+  },
+
+  {
+    "RRethy/base16-nvim"
+  },
+
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup({
+        'css',
+        'javascript',
+        'typescriptreact',
+        'typescript',
+        'javascriptreact',
+        'lua',
+        html = { mode = 'background' },
+      }, { mode = 'foreground' })
+    end
   }
 
 
