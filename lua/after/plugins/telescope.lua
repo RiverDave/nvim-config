@@ -18,6 +18,15 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>")
 vim.keymap.set("n", "<leader>fx", "<cmd>TodoTelescope<CR>")
 
 require "telescope".setup {
+
+  defaults = {
+    -- Platform specific commands are used in react native enviroments
+    file_ignore_patterns = { "node_modules", ".git", "android", "ios", "*.png", "assets", "*.jpg", "*.jpeg",
+    "*.webp", "*.mp4", "*.webm", "*.pdf" },
+  },
+
+
+
   pickers = {
     colorscheme = {
       enable_preview = true

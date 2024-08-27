@@ -534,6 +534,26 @@ return {
         html = { mode = 'background' },
       }, { mode = 'foreground' })
     end
+  },
+
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    name = "tailwind-tools",
+    build = ":UpdateRemotePlugins",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- optional
+      "neovim/nvim-lspconfig",         -- optional
+    },
+    opts = {}                          -- your configuration
+  },
+  --Bookmarks
+  {
+    "otavioschwanck/arrow.nvim",
+    config = function()
+      require("after.plugins.arrow")
+    end,
+
   }
 
 

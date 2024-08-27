@@ -56,3 +56,6 @@ o.undofile = true
 opt.list = true
 -- opt.listchars = { eol = '↴'}
 
+--Go opts
+
+
