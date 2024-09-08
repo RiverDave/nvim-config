@@ -56,6 +56,12 @@ o.undofile = true
 opt.list = true
 -- opt.listchars = { eol = '↴'}
 
---Go opts
+--Neovide (gui) opts
+
+if vim.g.neovide then
+vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+-- vim.g.guifont = "SauceCodePro Nerd Font Mono:h14"
+vim.o.guifont = "Source Code Pro:h22" -- text below applies for VimScript
+end
 
 

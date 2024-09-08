@@ -512,6 +512,7 @@ return {
       })
 
       vim.cmd('colorscheme github_dark_default')
+      -- vim.cmd('colorscheme catppuccin')
     end,
 
 
@@ -554,6 +555,19 @@ return {
       require("after.plugins.arrow")
     end,
 
+  },
+
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      require("after.plugins.vimtex")
+      vim.g.vimtex_view_method = "zathura"
+    end
   }
 
 

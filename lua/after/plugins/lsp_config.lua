@@ -124,22 +124,8 @@ lspconfig.eslint.setup {
   end,
 }
 
-lspconfig.pyright.setup({
+lspconfig.pyright.setup(require('after.plugins.pyright'))
 
-  cmd = { "pyright-langserver", "--stdio" },
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        useLibraryCodeForTypes = true
-      }
-    }
-  },
-
-  single_file_support = true,
-
-})
 -- Golang
 lspconfig.gopls.setup({
   settings = {
