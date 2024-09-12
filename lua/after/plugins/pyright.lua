@@ -49,11 +49,18 @@ return  {
     end,
     single_file_support = true,
     settings = {
+      pyright = {
+        -- Ruff should take care of this
+        disableOrganizeImports = true,
+
+
+      },
       python = {
         analysis = {
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
           diagnosticMode = 'openFilesOnly',
+          ignore = {'*'} -- Ignore all errors and warnings (ruff should take care of this)
         },
       },
     },

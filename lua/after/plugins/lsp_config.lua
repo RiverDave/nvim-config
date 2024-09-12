@@ -8,7 +8,7 @@ local map = vim.keymap.set
 local lspconfig = require('lspconfig')
 
 -- on attach(on buffr) functionalities
-local on_attach = function(_, _)
+local on_attach = function(client, bufnr)
   map('n', '<leader>ra', vim.lsp.buf.rename, {})
   map('n', '<leader>ca', vim.lsp.buf.code_action, {})
 
@@ -18,6 +18,11 @@ local on_attach = function(_, _)
   -- Lists references within telescope
   map('n', 'gr', require('telescope.builtin').lsp_references, {})
   map('n', 'K', vim.lsp.buf.hover, {})
+
+  if client.name == 'ruff_lsp' then
+    -- Disable hover in favor of Pyright
+    client.server_capabilities.hoverProvider = false
+  end
 end
 
 -- define default capabilities, capabilities
@@ -33,7 +38,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- specify basic capabilities on these servers...
 local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver", "cmake", "bashls",
-  "dockerls", "mdx_analyzer", "gopls" }
+  "dockerls", "mdx_analyzer", "gopls", "ruff_lsp" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -126,6 +131,10 @@ lspconfig.eslint.setup {
 
 lspconfig.pyright.setup(require('after.plugins.pyright'))
 
+lspconfig.ruff_lsp.setup{
+  on_attach = on_attach,
+}
+
 -- Golang
 lspconfig.gopls.setup({
   settings = {
@@ -139,11 +148,12 @@ lspconfig.gopls.setup({
   }
 })
 
+-- Auto format & organize imports on save on Go
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local params = vim.lsp.util.make_range_params()
-    params.context = {only = {"source.organizeImports"}}
+    params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
     -- argument after params if you find that you have to write the file
@@ -158,6 +168,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
       end
     end
-    vim.lsp.buf.format({async = false})
+    vim.lsp.buf.format({ async = false })
   end
 })

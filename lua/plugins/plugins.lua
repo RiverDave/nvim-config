@@ -250,7 +250,7 @@ return {
         lua = { "stylua" },
         cpp = { "clangd-format" },
         sh = { "shfmt" },
-        py = { "black" },
+        js = { "prettier" },
       },
     },
     config = function(_, opts)
@@ -286,6 +286,7 @@ return {
   --None-ls -> non lsp sources support(linters, formatters, etc)
   {
     "nvimtools/none-ls.nvim",
+    dependencies = "davidmh/cspell.nvim",
     config = function()
       require('after.plugins.nonels')
     end,
