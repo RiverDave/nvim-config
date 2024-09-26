@@ -37,8 +37,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 -- specify basic capabilities on these servers...
-local servers = { "html", "cssls", "clangd", "tailwindcss", "tsserver", "cmake", "bashls",
-  "dockerls", "mdx_analyzer", "gopls", "ruff_lsp" }
+local servers = { "html", "cssls", "clangd", "tailwindcss", "ts_ls", "cmake", "bashls",
+  "dockerls", "mdx_analyzer", "gopls", "ruff_lsp", "perlnavigator" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -111,23 +111,25 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
-lspconfig.eslint.setup {
-  capabilities = capabilities,
-  flags = { debounce_text_changes = 500 },
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = true
-    if client.server_capabilities.documentFormattingProvider then
-      local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function()
-          vim.lsp.buf.format { async = true }
-        end,
-        group = au_lsp,
-      })
-    end
-  end,
-}
+-- lspconfig.eslint.setup {
+--   capabilities = capabilities,
+--   flags = { debounce_text_changes = 500 },
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.documentFormattingProvider = true
+--     if client.server_capabilities.documentFormattingProvider then
+--       local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+--       vim.api.nvim_create_autocmd("BufWritePre", {
+--         pattern = "*",
+--         callback = function()
+--           vim.lsp.buf.format { async = true }
+--         end,
+--         group = au_lsp,
+--       })
+--     end
+--   end,
+-- }
+
+lspconfig.eslint.setup(require('after.plugins.eslint'))
 
 lspconfig.pyright.setup(require('after.plugins.pyright'))
 
@@ -171,3 +173,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = false })
   end
 })
+
+-- Perl lang
+require'lspconfig'.perlnavigator.setup{
+    cmd = { "perlnavigator" },
+    settings = {
+      perlnavigator = {
+          perlPath = 'perl',
+          enableWarnings = true,
+          perltidyProfile = '',
+          perlcriticProfile = '',
+          perlcriticEnabled = true,
+      }
+    }
+}
