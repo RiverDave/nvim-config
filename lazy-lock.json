@@ -13,6 +13,7 @@
   "copilot.vim": { "branch": "release", "commit": "782461159655b259cff10ecff05efa761e3d4764" },
   "cspell.nvim": { "branch": "main", "commit": "33cb8570ab0dda1ad915347fae62567d9c1390ed" },
   "cyberdream.nvim": { "branch": "main", "commit": "57fc3af9a8adcf1655fa4e70164bddd2ed898f60" },
+  "doom-one.nvim": { "branch": "main", "commit": "2d15798d1eccdaf12c2cb7dda571c5b0ae65a257" },
   "evergarden": { "branch": "mega", "commit": "7e031b62f13d8b13eed5a2906d6bf4ea6d44759c" },
   "focus.nvim": { "branch": "master", "commit": "3841a38df972534567e85840d7ead20d3a26faa6" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },

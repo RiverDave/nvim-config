@@ -280,7 +280,7 @@ return {
   },
 
   {
-    "github/copilot.vim"
+    "github/copilot.vim",
   },
 
   --None-ls -> non lsp sources support(linters, formatters, etc)
@@ -309,29 +309,10 @@ return {
   },
 
   {
-    --TODO: I'll need this to deal with mysql stuff
+    --TODO: I'll need this to deal with db stuff
     "tpope/vim-dadbod",
   },
 
-  --Pretty UI:
-  --
-  -- lazy.nvim
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- add any options here
-  --   },
-  --
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     "MunifTanjim/nui.nvim",
-  --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     -- "rcarriga/nvim-notify",
-  --   },
-  -- },
 
   {
     "folke/tokyonight.nvim",
@@ -349,16 +330,6 @@ return {
       overrides = {},         -- add custom overrides
     }
   },
-
-  -- {
-  --   'mvllow/modes.nvim',
-  --   tag = 'v0.2.0',
-  --   config = function()
-  --     require('modes').setup()
-  --   end
-  -- },
-
-  -- Some funny themes:
 
   {
     "iamcco/markdown-preview.nvim",
@@ -569,6 +540,45 @@ return {
       require("after.plugins.vimtex")
       vim.g.vimtex_view_method = "zathura"
     end
+  },
+
+  --TODO: reformat this
+  {
+    'NTBBloodbath/doom-one.nvim',
+    setup = function()
+      -- Add color to cursor
+      vim.g.doom_one_cursor_coloring = false
+      -- Set :terminal colors
+      vim.g.doom_one_terminal_colors = true
+      -- Enable italic comments
+      vim.g.doom_one_italic_comments = false
+      -- Enable TS support
+      vim.g.doom_one_enable_treesitter = true
+      -- Color whole diagnostic text or only underline
+      vim.g.doom_one_diagnostics_text_color = false
+      -- Enable transparent background
+      vim.g.doom_one_transparent_background = false
+
+      -- Pumblend transparency
+      vim.g.doom_one_pumblend_enable = false
+      vim.g.doom_one_pumblend_transparency = 20
+
+      -- Plugins integration
+      vim.g.doom_one_plugin_neorg = true
+      vim.g.doom_one_plugin_barbar = false
+      vim.g.doom_one_plugin_telescope = false
+      vim.g.doom_one_plugin_neogit = true
+      vim.g.doom_one_plugin_nvim_tree = true
+      vim.g.doom_one_plugin_dashboard = true
+      vim.g.doom_one_plugin_startify = true
+      vim.g.doom_one_plugin_whichkey = true
+      vim.g.doom_one_plugin_indent_blankline = true
+      vim.g.doom_one_plugin_vim_illuminate = true
+      vim.g.doom_one_plugin_lspsaga = false
+    end,
+    config = function()
+      vim.cmd("colorscheme doom-one")
+    end,
   }
 
 
