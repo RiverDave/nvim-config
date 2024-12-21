@@ -1,7 +1,6 @@
 -- All packages I warned about in plugins, are used in here.
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls" }
 })
 
 local map = vim.keymap.set
@@ -37,8 +36,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 -- specify basic capabilities on these servers...
-local servers = { "html", "cssls", "clangd", "tailwindcss", "ts_ls", "cmake", "bashls",
-  "dockerls", "mdx_analyzer", "gopls", "ruff_lsp", "perlnavigator" }
+local servers = { "html", "cssls", "clangd", "ts_ls", "cmake", "bashls",
+  "dockerls", "mdx_analyzer", "gopls", "ruff_lsp", "perlnavigator", "nil_ls" , "lua_ls", "purescriptls", "ocamllsp" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -110,24 +109,6 @@ lspconfig.rust_analyzer.setup {
     },
   },
 }
-
--- lspconfig.eslint.setup {
---   capabilities = capabilities,
---   flags = { debounce_text_changes = 500 },
---   on_attach = function(client, bufnr)
---     client.server_capabilities.documentFormattingProvider = true
---     if client.server_capabilities.documentFormattingProvider then
---       local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
---       vim.api.nvim_create_autocmd("BufWritePre", {
---         pattern = "*",
---         callback = function()
---           vim.lsp.buf.format { async = true }
---         end,
---         group = au_lsp,
---       })
---     end
---   end,
--- }
 
 lspconfig.eslint.setup(require('after.plugins.eslint'))
 

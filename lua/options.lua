@@ -40,6 +40,8 @@ o.mouse = "a"
 --Screen wide status line
 vim.o.laststatus = 3
 
+--Filetypes 
+vim.filetype.add({ extension = { purs = 'purescript' }})
 --  Numbers
 o.number = true
 o.numberwidth = 2
