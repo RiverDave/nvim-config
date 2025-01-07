@@ -29,11 +29,12 @@ return {
 	{
 		"projekt0n/github-nvim-theme",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		config = function()
+			local curr_scheme = "github_dark_high_contrast"
+			vim.cmd.colorscheme(curr_scheme) -- Or the desired theme
+			ColorBg(_, curr_scheme)
+		end,
 		priority = 1000, -- make sure to load this before all the other start plugins
-		-- config = function()
-		--   require('after.plugins.colors')
-		--   -- vim.cmd('colorscheme github_dark')
-		-- end,
 	},
 
 	{
@@ -96,4 +97,5 @@ return {
 
 	--Tsoding's theme
 	{ "blazkowolf/gruber-darker.nvim" },
+
 }

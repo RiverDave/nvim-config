@@ -30,8 +30,6 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
 
-
-
 	{ --Mainly syntax highlighting
 		"nvim-treesitter/nvim-treesitter",
 		opts = function()
@@ -39,7 +37,6 @@ return {
 			return conf
 		end,
 	},
-
 
 	-- Completions
 	{
@@ -178,6 +175,14 @@ return {
 	-- File formatting
 	{
 		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				cpp = { "clangd-format" },
+				sh = { "shfmt" },
+				js = { "prettier" },
+			},
+		},
 		config = function()
 			require("conform").setup(opts)
 		end,
@@ -219,7 +224,7 @@ return {
 
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
+		branch = "main",
 		dependencies = {
 			{ "github/copilot.vim" }, -- or github/copilot.vim
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
@@ -235,10 +240,6 @@ return {
 		--TODO: I'll need this to deal with db stuff
 		"tpope/vim-dadbod",
 	},
-
-
-
-
 
 	{
 		"iamcco/markdown-preview.nvim",
@@ -306,8 +307,6 @@ return {
 		},
 	},
 
-
-
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -326,8 +325,6 @@ return {
 			require("focus").setup()
 		end,
 	},
-
-
 
 	{
 		"norcalli/nvim-colorizer.lua",
