@@ -58,40 +58,19 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
--- lspconfig.clangd.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	cmd = {
--- 		"clangd",
--- 		"--background-index",
--- 		"--clang-tidy",
--- 		"--completion-style=bundled",
--- 		"--cross-file-rename",
--- 		"--header-insertion=iwyu",
--- 	},
--- 	filetypes = { "c", "cpp", "objc", "objcpp" },
--- 	root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
--- })
-
-lspconfig.ccls.setup({
-	cmd = { "ccls" },
-	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-	root_dir = function(fname)
-		return lspconfig.util.root_pattern("compile_commands.json", ".ccls")(fname)
-			or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
-	end,
-	offset_encoding = "utf-32",
-	-- ccls does not support sending a null root directory
-	single_file_support = false,
-	init_options = {
-		compilationDatabaseDirectory = "build",
-		index = {
-			threads = 0,
-		},
-		clang = {
-			excludeArgs = { "-frounding-math" },
-		},
+lspconfig.clangd.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = {
+		"clangd",
+		"--background-index",
+		"--clang-tidy",
+		"--completion-style=bundled",
+		"--cross-file-rename",
+		"--header-insertion=iwyu",
 	},
+	filetypes = { "c", "cpp", "objc", "objcpp" },
+	root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
 })
 
 lspconfig.lua_ls.setup({

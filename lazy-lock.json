@@ -27,7 +27,6 @@
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "modus-themes.nvim": { "branch": "master", "commit": "35980f19daef4745c96f1cb292d484fb1f33f822" },
   "monochrome.nvim": { "branch": "main", "commit": "2de78d9688ea4a177bcd9be554ab9192337d35ff" },
-  "naysayer-theme.nvim": { "branch": "main", "commit": "a374300cb18c8a7fc283ac5e949b2f7d09fb36f8" },
   "neoconf.nvim": { "branch": "main", "commit": "0a5f0b6e205a09444e0ee05c169a57feea6a9bc7" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
   "none-ls.nvim": { "branch": "main", "commit": "40dc2e983560acaea29d6312b33fafba37b0c272" },
