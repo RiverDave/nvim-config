@@ -51,6 +51,7 @@ o.splitbelow = true
 o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
+o.linespace = 8  -- Set the line spacing to 4 pixels
 
 opt.list = true
 -- opt.listchars = { eol = '↴'}

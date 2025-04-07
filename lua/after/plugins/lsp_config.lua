@@ -36,8 +36,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local servers = {
 	"html",
 	"cssls",
-	-- "clangd",
-  "ccls",
+	"clangd",
+  -- "ccls",
 	"ts_ls",
 	"cmake",
 	"bashls",
