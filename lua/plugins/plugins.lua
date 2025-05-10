@@ -161,11 +161,10 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		-- opts = {
-		--   ensure_installed = { -- TODO: Add main servers
-		--     "eslint@4.8.0",
-		--   },
-		-- },
+    config = function()
+      require("after.plugins.mason-lspconfig")
+    end,
+
 	},
 
 	{

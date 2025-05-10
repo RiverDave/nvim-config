@@ -46,7 +46,7 @@ local servers = {
 	"gopls",
 	"perlnavigator",
 	"nil_ls",
-	"lua_ls",
+  "lua_ls",
 	"purescriptls",
 	"ocamllsp",
 }
@@ -95,35 +95,8 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-lspconfig.rust_analyzer.setup({
-	-- on_attach = function(client, bufnr)
-	--   on_attach.on_attach(client, bufnr)               -- Call the general on_attach function
-	--   on_attach.setup_rust_analyzer(client, bufnr)     -- Call the Rust Analyzer setup function
-	-- end,
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		["rust-analyzer"] = {
-			imports = {
-				granularity = {
-					group = "module",
-				},
-				prefix = "self",
-			},
-			cargo = {
-				buildScripts = {
-					enable = true,
-				},
-			},
-			procMacro = {
-				enable = true,
-			},
-		},
-	},
-})
-
+lspconfig.rust_analyzer.setup(require('after.plugins.rust-analyzer'))
 lspconfig.eslint.setup(require("after.plugins.eslint"))
-
 lspconfig.pyright.setup(require("after.plugins.pyright"))
 
 -- Golang
