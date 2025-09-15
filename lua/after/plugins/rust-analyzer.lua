@@ -37,63 +37,64 @@ return {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
     single_file_support = true,
-    root_dir = function(fname)
-      local reuse_active = is_library(fname)
-      if reuse_active then
-        return reuse_active
-      end
+    settings = {
+      root_dir = function(fname)
+        local reuse_active = is_library(fname)
+        if reuse_active then
+          return reuse_active
+        end
 
-      local cargo_crate_dir = util.root_pattern 'Cargo.toml'(fname)
-      local cargo_workspace_root
+        local cargo_crate_dir = util.root_pattern 'Cargo.toml' (fname)
+        local cargo_workspace_root
 
-      if cargo_crate_dir ~= nil then
-        local cmd = {
-          'cargo',
-          'metadata',
-          '--no-deps',
-          '--format-version',
-          '1',
-          '--manifest-path',
-          cargo_crate_dir .. '/Cargo.toml',
-        }
+        if cargo_crate_dir ~= nil then
+          local cmd = {
+            'cargo',
+            'metadata',
+            '--no-deps',
+            '--format-version',
+            '1',
+            '--manifest-path',
+            cargo_crate_dir .. '/Cargo.toml',
+          }
 
-        local result = async.run_command(cmd)
+          local result = async.run_command(cmd)
 
-        if result and result[1] then
-          result = vim.json.decode(table.concat(result, ''))
-          if result['workspace_root'] then
-            cargo_workspace_root = vim.fs.normalize(result['workspace_root'])
+          if result and result[1] then
+            result = vim.json.decode(table.concat(result, ''))
+            if result['workspace_root'] then
+              cargo_workspace_root = vim.fs.normalize(result['workspace_root'])
+            end
           end
         end
-      end
 
-      return cargo_workspace_root
-        or cargo_crate_dir
-        or util.root_pattern 'rust-project.json'(fname)
-        or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-    end,
-    capabilities = {
-      experimental = {
-        serverStatusNotification = true,
+        return cargo_workspace_root
+            or cargo_crate_dir
+            or util.root_pattern 'rust-project.json' (fname)
+            or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+      end,
+      capabilities = {
+        experimental = {
+          serverStatusNotification = true,
+        },
+      },
+      before_init = function(init_params, config)
+        -- See https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26
+        if config.settings and config.settings['rust-analyzer'] then
+          init_params.initializationOptions = config.settings['rust-analyzer']
+        end
+      end,
+    },
+    commands = {
+      CargoReload = {
+        function()
+          reload_workspace(0)
+        end,
+        description = 'Reload current cargo workspace',
       },
     },
-    before_init = function(init_params, config)
-      -- See https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26
-      if config.settings and config.settings['rust-analyzer'] then
-        init_params.initializationOptions = config.settings['rust-analyzer']
-      end
-    end,
-  },
-  commands = {
-    CargoReload = {
-      function()
-        reload_workspace(0)
-      end,
-      description = 'Reload current cargo workspace',
-    },
-  },
-  docs = {
-    description = [[
+    docs = {
+      description = [[
 https://github.com/rust-lang/rust-analyzer
 
 rust-analyzer (aka rls 2.0), a language server for Rust
@@ -115,5 +116,6 @@ require'lspconfig'.rust_analyzer.setup{
 Note: do not set `init_options` for this LS config, it will be automatically populated by the contents of settings["rust-analyzer"] per
 https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26.
     ]],
-  },
+    },
+  }
 }

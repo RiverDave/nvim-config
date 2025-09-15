@@ -63,3 +63,4 @@ if vim.g.neovide then
 	-- vim.g.guifont = "SauceCodePro Nerd Font Mono:h14"
 	vim.o.guifont = "Source Code Pro:h22" -- text below applies for VimScript
 end
+
